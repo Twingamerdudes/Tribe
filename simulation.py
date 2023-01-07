@@ -2,7 +2,6 @@
 import pygame
 import random
 import math
-import sys
 
 foodList = []
 waterList = []
@@ -19,30 +18,23 @@ FIGHTING_AGE = 0
 FIGHTING_ENABLED = True
 
 #Handles the entire simulation
-class Simulation:
-  def __init__(self, width=640, height=480, fullscreen=False, fightingAge=18, fightingEnabled=True, possibleTribeNames=["The Tribe of the Gold", "The Tribe of the Silver", "The Tribe of the Bronze", "The Tribe of the Copper", "The Tribe of the Iron", "The Tribe of the Steel", "The Tribe of the Titanium", "The Tribe of the Platinum", "The Tribe of the Silver", "The Tribe of the Gold", "The Tribe of the Diamond", "The Tribe of the Emerald", "The Tribe of the Ruby", "The Tribe of the Sapphire", "The Tribe of the Amethyst", "The Tribe of the Topaz", "The Tribe of the Opal", "The Tribe of the Pearl", "The Tribe of the Jade", "The Tribe of the Obsidian", "The Tribe of the Onyx", "The Tribe of the Quartz", "The Tribe of the Lapis", "The Tribe of the Amber", "The Tribe of the Jade", "The Tribe of the Turquoise", "The Tribe of the Garnet", "The Tribe of the Peridot", "The Tribe of the Agate", "The Tribe of the Jasper", "The Tribe of the Malachite", "The Tribe of the Moonstone", "The Tribe of the Sunstone", "The Tribe of the Ametrine", "The Tribe of the Carnelian", "The Tribe of the Citrine", "The Tribe of the Hematite", "The Tribe of the Hemimorphite", "The Tribe of the Labradorite", "The Tribe of the Moonstone", "The Tribe of the Obsidian", "The Tribe of the Onyx", "The Tribe of the Quartz", "The Tribe of the Lapis", "The Tribe of the Amber", "The Tribe of the Jade", "The Tribe of the Turquoise", "The Tribe of the Garnet", "The Tribe of the Peridot", "The Tribe of the Agate", "The Tribe of the Jasper", "The Tribe of the Malachite", "The Tribe of the Moonstone", "The Tribe of the holy 69"]):
-    pygame.init()
-    global SCREEN_WIDTH
-    global SCREEN_HEIGHT
-    global FIGHTING_AGE
-    global FIGHTING_ENABLED
-    global tribeNames
-    global font
-    global header
-
-    tribeNames = possibleTribeNames
-    if fullscreen:
-      SCREEN_WIDTH = pygame.display.Info().current_w
-      SCREEN_HEIGHT = pygame.display.Info().current_h
-    else:
-      SCREEN_WIDTH = width
-      SCREEN_HEIGHT = height
-    self.SCREEN_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
-    self.fullscreen = fullscreen
-    font = pygame.font.SysFont("Arial", 16)
-    header = pygame.font.SysFont("Arial", 20)
-    FIGHTING_AGE = fightingAge
-    FIGHTING_ENABLED = fightingEnabled
+def init(width=640, height=480, fullscreen=False, fightingAge=18, fightingEnabled=True, possibleTribeNames=["The Tribe of the Gold", "The Tribe of the Silver", "The Tribe of the Bronze", "The Tribe of the Copper", "The Tribe of the Iron", "The Tribe of the Steel", "The Tribe of the Titanium", "The Tribe of the Platinum", "The Tribe of the Silver", "The Tribe of the Gold", "The Tribe of the Diamond", "The Tribe of the Emerald", "The Tribe of the Ruby", "The Tribe of the Sapphire", "The Tribe of the Amethyst", "The Tribe of the Topaz", "The Tribe of the Opal", "The Tribe of the Pearl", "The Tribe of the Jade", "The Tribe of the Obsidian", "The Tribe of the Onyx", "The Tribe of the Quartz", "The Tribe of the Lapis", "The Tribe of the Amber", "The Tribe of the Jade", "The Tribe of the Turquoise", "The Tribe of the Garnet", "The Tribe of the Peridot", "The Tribe of the Agate", "The Tribe of the Jasper", "The Tribe of the Malachite", "The Tribe of the Moonstone", "The Tribe of the Sunstone", "The Tribe of the Ametrine", "The Tribe of the Carnelian", "The Tribe of the Citrine", "The Tribe of the Hematite", "The Tribe of the Hemimorphite", "The Tribe of the Labradorite", "The Tribe of the Moonstone", "The Tribe of the Obsidian", "The Tribe of the Onyx", "The Tribe of the Quartz", "The Tribe of the Lapis", "The Tribe of the Amber", "The Tribe of the Jade", "The Tribe of the Turquoise", "The Tribe of the Garnet", "The Tribe of the Peridot", "The Tribe of the Agate", "The Tribe of the Jasper", "The Tribe of the Malachite", "The Tribe of the Moonstone", "The Tribe of the holy 69"]):
+  pygame.init()
+  global SCREEN_WIDTH
+  global SCREEN_HEIGHT
+  global FIGHTING_AGE
+  global FIGHTING_ENABLED
+  global tribeNames
+  global font
+  global header
+  tribeNames = possibleTribeNames
+  SCREEN_WIDTH = width
+  SCREEN_HEIGHT = height
+  font = pygame.font.SysFont("Arial", 16)
+  header = pygame.font.SysFont("Arial", 20)
+  FIGHTING_AGE = fightingAge
+  FIGHTING_ENABLED = fightingEnabled
+  return pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 #Custom Lifeforms (not humans)
 class LifeForm:
   def __init__(self, size=5, color=(255, 255, 255), hasHunger=True, hasThirst=True, name="LifeForm"):

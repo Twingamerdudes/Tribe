@@ -20,8 +20,8 @@ class Human:
     self.findingFood = False
     self.houseCooldown = 0
     self.tribe = None
-    self.Raiding = False
-    self.HouseRaiding = None
+    self.raiding = False
+    self.houseRaiding = None
     self.mate = None
     self.fightingAge = FIGHTING_AGE
 
@@ -116,7 +116,7 @@ class Human:
         #If it needs to find food to bring to it's house
         if self.holdingFood == False:
             closestDistance = float("inf")
-            self.HouseRaiding = None
+            self.houseRaiding = None
             closestFood = None
 
             if self.tribe != None:
@@ -133,9 +133,9 @@ class Human:
                       distance = math.sqrt((house.x - self.x)**2 + (house.y - self.y)**2)
                       if distance < closestDistance:
                           closestDistance = distance
-                          self.HouseRaiding = house
-              if self.HouseRaiding != None and self.HouseRaiding.foodCount > 0 and closestDistance < math.sqrt((closestFood.x - self.x)**2 + (closestFood.y - self.y)**2):
-                  self.Raiding = True
+                          self.houseRaiding = house
+              if self.houseRaiding != None and self.houseRaiding.foodCount > 0 and closestDistance < math.sqrt((closestFood.x - self.x)**2 + (closestFood.y - self.y)**2):
+                  self.raiding = True
             else:
               for food in foodList:
                 if closestFood == None:
@@ -145,7 +145,7 @@ class Human:
                     closestFood = food
             #Go to the where the closest food is or the house it's raiding
             if self.tribe != None:
-                if not self.Raiding:
+                if not self.raiding:
                   if closestFood != None:
                     if self.x < closestFood.x:
                       self.x += self.speed
@@ -157,14 +157,14 @@ class Human:
                       self.y -= self.speed
                   self.findingFood = True
                 else:
-                    if self.HouseRaiding != None:
-                        if self.x < self.HouseRaiding.x:
+                    if self.houseRaiding != None:
+                        if self.x < self.houseRaiding.x:
                             self.x += self.speed
-                        elif self.x > self.HouseRaiding.x:
+                        elif self.x > self.houseRaiding.x:
                             self.x -= self.speed
-                        if self.y < self.HouseRaiding.y:
+                        if self.y < self.houseRaiding.y:
                             self.y += self.speed
-                        elif self.y > self.HouseRaiding.y:
+                        elif self.y > self.houseRaiding.y:
                             self.y -= self.speed
             else:
                 if closestFood != None:
@@ -246,10 +246,10 @@ class Human:
         self.y = SCREEN_HEIGHT
   
     #If the human is near the house it's raiding, take the food
-    if self.Raiding and self.HouseRaiding != None:
-        if math.sqrt((self.HouseRaiding.x - self.x)**2 + (self.HouseRaiding.y - self.y)**2) < 10:
-            self.Raiding = False
-            self.HouseRaiding.foodCount -= 1
+    if self.raiding and self.houseRaiding != None:
+        if math.sqrt((self.houseRaiding.x - self.x)**2 + (self.houseRaiding.y - self.y)**2) < 10:
+            self.raiding = False
+            self.houseRaiding.foodCount -= 1
             self.holdingFood = True
             self.findingFood = False
   def eat(self):
